@@ -1,0 +1,23 @@
+# Audio Processing
+librosa==0.10.1
+soundfile==0.12.1
+pydub==0.25.1
+numpy==1.26.3
+scipy==1.11.4
+
+# YouTube Download
+yt-dlp>=2023.12.30
+
+# Audio Conversion
+ffmpeg-python==0.2.0
+
+# Web UI
+streamlit==1.29.0
+
+# Utilities
+python-dotenv==1.0.0
+tqdm==4.66.1
+
+# Optional: Advanced Audio Analysis
+pyrubberband==0.3.0  # Time stretching
+# madmom==0.16.1  # Beat detection - requires Python <3.10 or >=3.11

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShorterMusic - Instrukcja Obslugi</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #0ea5e9;
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --code-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+        }
+
+        .nav h3 {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background: var(--bg);
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section h3 {
+            color: var(--text);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .section h4 {
+            color: var(--secondary);
+            font-size: 1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            color: #e2e8f0;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .code-inline {
+            background: #f1f5f9;
+            color: var(--primary-dark);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .success-box {
+            background: #dcfce7;
+            border-left: 4px solid var(--success);
+            padding: 1rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg);
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        tr:hover {
+            background: var(--bg);
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 8px;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text);
+        }
+
+        .step-content p {
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .menu-tree {
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+        }
+
+        .menu-tree .level-1 {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .menu-tree .level-2 {
+            color: var(--text);
+            margin-left: 1.5rem;
+        }
+
+        .menu-tree .level-3 {
+            color: var(--text-muted);
+            margin-left: 3rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .nav {
+                position: relative;
+                top: 0;
+            }
+
+            .nav-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ShorterMusic</h1>
+        <p>Automatyczny kreator miksow muzycznych</p>
+    </header>
+
+    <div class="container">
+        <nav class="nav">
+            <h3>Spis tresci</h3>
+            <div class="nav-links">
+                <a href="#wprowadzenie">Wprowadzenie</a>
+                <a href="#wymagania">Wymagania</a>
+                <a href="#instalacja">Instalacja</a>
+                <a href="#uruchamianie">Uruchamianie</a>
+                <a href="#menu">Menu i opcje</a>
+                <a href="#konfiguracja">Konfiguracja</a>
+                <a href="#api">API programistyczne</a>
+                <a href="#formaty">Formaty audio</a>
+                <a href="#rozwiazywanie">Rozwiazywanie problemow</a>
+            </div>
+        </nav>
+
+        <section id="wprowadzenie" class="section">
+            <h2>Wprowadzenie</h2>
+            <p>
+                <strong>ShorterMusic</strong> to zaawansowane narzedzie do automatycznego tworzenia miksow muzycznych
+                z fragmentow wielu utworow. Aplikacja inteligentnie analizuje pliki audio, aby znalezc
+                najciekawsze segmenty (7-30 sekund), a nastepnie laczy je plynnie za pomoca techniki crossfade.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Automatyczna analiza</h4>
+                    <p>Wykrywanie interesujacych fragmentow na podstawie energii, rytmu i harmonii</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Inteligentne sekwencjonowanie</h4>
+                    <p>Optymalne ukladanie segmentow dla plynnych przejsc muzycznych</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Wsparcie YouTube</h4>
+                    <p>Pobieranie playlist i pojedynczych utworow bezposrednio z YouTube</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Profesjonalny crossfade</h4>
+                    <p>Wiele krzywych przejscia: liniowa, rownowagi mocy, eksponencjalna, S-krzywa</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Detekcja BPM</h4>
+                    <p>Automatyczne wykrywanie tempa i synchronizacja utworow</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Analiza tonacji</h4>
+                    <p>Wykrywanie tonacji dla harmonijnej kompatybilnosci utworow</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="wymagania" class="section">
+            <h2>Wymagania systemowe</h2>
+
+            <h3>Minimalne wymagania</h3>
+            <table>
+                <tr>
+                    <th>Komponent</th>
+                    <th>Wymaganie</th>
+                </tr>
+                <tr>
+                    <td>System operacyjny</td>
+                    <td>Windows 10+, Linux, macOS</td>
+                </tr>
+                <tr>
+                    <td>Python</td>
+                    <td>3.8 lub nowszy (zalecany 3.11+)</td>
+                </tr>
+                <tr>
+                    <td>RAM</td>
+                    <td>Minimum 2 GB (zalecane 4 GB)</td>
+                </tr>
+                <tr>
+                    <td>Dysk</td>
+                    <td>~500 MB na zaleznosci + miejsce na pliki audio</td>
+                </tr>
+            </table>
+
+            <h3>Zewnetrzne zaleznosci</h3>
+            <div class="info-box">
+                <strong>FFmpeg</strong> - wymagany do eksportu MP3. Moze byc dolaczony w folderze
+                <span class="code-inline">bin/ffmpeg/</span> lub zainstalowany systemowo.
+            </div>
+            <div class="info-box">
+                <strong>yt-dlp</strong> - wymagany do pobierania z YouTube. Moze byc dolaczony w folderze
+                <span class="code-inline">bin/yt-dlp/</span> lub zainstalowany przez pip.
+            </div>
+        </section>
+
+        <section id="instalacja" class="section">
+            <h2>Instalacja</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Pobierz projekt</h4>
+                    <p>Sklonuj lub pobierz repozytorium ShorterMusic na swoj komputer.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Utworz srodowisko wirtualne (opcjonalnie)</h4>
+                    <div class="code-block">python -m venv venv</div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Aktywuj srodowisko wirtualne</h4>
+                    <p><strong>Windows:</strong></p>
+                    <div class="code-block">venv\Scripts\activate</div>
+                    <p><strong>Linux/macOS:</strong></p>
+                    <div class="code-block">source venv/bin/activate</div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Zainstaluj zaleznosci</h4>
+                    <div class="code-block">cd files
+pip install -r requirements.txt</div>
+                </div>
+            </div>
+
+            <h3>Glowne biblioteki Python</h3>
+            <table>
+                <tr>
+                    <th>Biblioteka</th>
+                    <th>Wersja</th>
+                    <th>Przeznaczenie</th>
+                </tr>
+                <tr>
+                    <td>librosa</td>
+                    <td>0.10.1</td>
+                    <td>Analiza audio</td>
+                </tr>
+                <tr>
+                    <td>soundfile</td>
+                    <td>0.12.1</td>
+                    <td>Odczyt/zapis plikow audio</td>
+                </tr>
+                <tr>
+                    <td>pydub</td>
+                    <td>0.25.1</td>
+                    <td>Manipulacja audio</td>
+                </tr>
+                <tr>
+                    <td>numpy</td>
+                    <td>1.26.3</td>
+                    <td>Obliczenia numeryczne</td>
+                </tr>
+                <tr>
+                    <td>yt-dlp</td>
+                    <td>2023.12.30+</td>
+                    <td>Pobieranie z YouTube</td>
+                </tr>
+                <tr>
+                    <td>tqdm</td>
+                    <td>4.66.1</td>
+                    <td>Paski postepu</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="uruchamianie" class="section">
+            <h2>Uruchamianie aplikacji</h2>
+
+            <h3>Metoda 1: Skrypt startowy (zalecana)</h3>
+            <p><strong>Windows:</strong></p>
+            <div class="code-block">windows.bat</div>
+            <p>lub</p>
+            <div class="code-block">cd files
+run.bat</div>
+
+            <p><strong>Linux/macOS:</strong></p>
+            <div class="code-block">./linux-mac.sh</div>
+            <p>lub</p>
+            <div class="code-block">cd files
+./run.sh</div>
+
+            <h3>Metoda 2: Bezposrednie uruchomienie Python</h3>
+            <div class="code-block">cd files
+python interactive.py</div>
+
+            <div class="success-box">
+                Skrypty <span class="code-inline">.bat</span> i <span class="code-inline">.sh</span>
+                automatycznie tworza i aktywuja srodowisko wirtualne jesli nie istnieje.
+            </div>
+        </section>
+
+        <section id="menu" class="section">
+            <h2>Menu i dostepne opcje</h2>
+
+            <h3>Struktura menu glownego</h3>
+            <div class="menu-tree">
+                <div class="level-1">ShorterMusic - Interactive Mix Creator</div>
+                <div class="level-2">|</div>
+                <div class="level-2">+-- Wybierz zrodlo utworow</div>
+                <div class="level-3">|-- [1] Pobierz playliste z YouTube</div>
+                <div class="level-3">|-- [2] Uzyj plikow z folderu downloads</div>
+                <div class="level-2">|</div>
+                <div class="level-2">+-- Konfiguracja segmentow</div>
+                <div class="level-3">|-- Liczba segmentow na utwor (1-5)</div>
+                <div class="level-3">|-- Minimalna dlugosc segmentu (3-30s)</div>
+                <div class="level-3">|-- Maksymalna dlugosc segmentu (min-60s)</div>
+                <div class="level-3">|-- Nazwa pliku wyjsciowego</div>
+                <div class="level-2">|</div>
+                <div class="level-2">+-- Po zakonczeniu</div>
+                <div class="level-3">|-- Usunac pobrane pliki? (t/n)</div>
+                <div class="level-3">|-- Sciezka do wygenerowanego miksu</div>
+            </div>
+
+            <h3>Opcja 1: Pobieranie z YouTube</h3>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Wprowadz URL playlisty</h4>
+                    <p>Podaj pelny adres URL playlisty YouTube, np.:<br>
+                    <span class="code-inline">https://www.youtube.com/playlist?list=PLxxxxxx</span></p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Okresl liczbe utworow</h4>
+                    <p>Podaj ile utworow chcesz pobrac. Wpisz <strong>0</strong> aby pobrac wszystkie.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Poczekaj na pobranie</h4>
+                    <p>Aplikacja wyswietli pasek postepu pobierania. Pliki zostana zapisane w
+                    <span class="code-inline">data/downloads/</span></p>
+                </div>
+            </div>
+
+            <h3>Opcja 2: Pliki lokalne</h3>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Skanowanie folderu</h4>
+                    <p>Aplikacja automatycznie przeskanuje folder <span class="code-inline">data/downloads/</span>
+                    w poszukiwaniu plikow audio (MP3, WAV, FLAC).</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Wybor plikow</h4>
+                    <p>Mozesz uzyc wszystkich znalezionych plikow lub wybrac konkretne,
+                    podajac ich numery oddzielone przecinkami.</p>
+                </div>
+            </div>
+
+            <h3>Konfiguracja segmentow</h3>
+            <table>
+                <tr>
+                    <th>Parametr</th>
+                    <th>Zakres</th>
+                    <th>Domyslnie</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>Segmenty na utwor</td>
+                    <td>1-5</td>
+                    <td>1</td>
+                    <td>Ile fragmentow wyciagnac z kazdego utworu</td>
+                </tr>
+                <tr>
+                    <td>Min. dlugosc</td>
+                    <td>3-30s</td>
+                    <td>7s</td>
+                    <td>Minimalna dlugosc segmentu</td>
+                </tr>
+                <tr>
+                    <td>Max. dlugosc</td>
+                    <td>min-60s</td>
+                    <td>15s</td>
+                    <td>Maksymalna dlugosc segmentu</td>
+                </tr>
+                <tr>
+                    <td>Nazwa pliku</td>
+                    <td>dowolna</td>
+                    <td>mix.mp3</td>
+                    <td>Nazwa pliku wyjsciowego</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="konfiguracja" class="section">
+            <h2>Zaawansowana konfiguracja</h2>
+
+            <h3>Analiza energii</h3>
+            <table>
+                <tr>
+                    <th>Parametr</th>
+                    <th>Wartosc</th>
+                    <th>Opis</th>
+                </tr>
+                <tr>
+                    <td>frame_size</td>
+                    <td>2048</td>
+                    <td>Rozmiar FFT</td>
+                </tr>
+                <tr>
+                    <td>hop_length</td>
+                    <td>512</td>
+                    <td>Przesuniecie ramki</td>
+                </tr>
+                <tr>
+                    <td>Prog energii</td>
+                    <td>0.6-0.7</td>
+                    <td>Prog wykrywania wysokiej energii</td>
+                </tr>
+                <tr>
+                    <td>merge_gap</td>
+                    <td>2.0s</td>
+                    <td>Laczenie bliskich regionow</td>
+                </tr>
+            </table>
+
+            <h3>Crossfade</h3>
+            <p>Dostepne metody przejscia miedzy segmentami:</p>
+            <ul>
+                <li><strong>Linear</strong> - proste liniowe przejscie</li>
+                <li><strong>Equal-power</strong> - stala moc (zachowanie energii)</li>
+                <li><strong>Exponential</strong> - krzywa eksponencjalna (zmienny wykladnik)</li>
+                <li><strong>S-curve</strong> - gladkie przejscie sigmoidalne</li>
+            </ul>
+
+            <div class="info-box">
+                Czas trwania crossfade: 2.0-3.0 sekundy, zalezny od kompatybilnosci tonacji.
+            </div>
+
+            <h3>Algorytm wyboru segmentow</h3>
+            <p>Kazdy segment otrzymuje "wynik interesujacosci" na podstawie:</p>
+            <table>
+                <tr>
+                    <th>Czynnik</th>
+                    <th>Waga</th>
+                </tr>
+                <tr>
+                    <td>Srednia energia</td>
+                    <td>40%</td>
+                </tr>
+                <tr>
+                    <td>Strumien spektralny</td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>Sila onsetow</td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>Wariancja energii</td>
+                    <td>10%</td>
+                </tr>
+                <tr>
+                    <td>Wariancja spektralna</td>
+                    <td>10%</td>
+                </tr>
+            </table>
+
+            <h3>Algorytm kolejnosci przejsc</h3>
+            <p>Optymalna kolejnosc segmentow obliczana jest na podstawie:</p>
+            <ul>
+                <li><strong>Odleglosc tonacji</strong> (50% wagi) - preferowane harmonijne przejscia</li>
+                <li><strong>Roznica BPM</strong> (30% wagi) - minimalizacja zmian tempa</li>
+                <li><strong>Roznica energii</strong> (20% wagi) - plynne przejscia dynamiczne</li>
+            </ul>
+        </section>
+
+        <section id="api" class="section">
+            <h2>API programistyczne</h2>
+
+            <h3>Podstawowe uzycie</h3>
+            <div class="code-block">from App.core.app import ShorterMusicApp
+
+app = ShorterMusicApp()
+
+# Z plikow lokalnych
+output = app.create_mix_from_files(
+    file_paths=["song1.mp3", "song2.mp3", "song3.mp3"],
+    segments_per_track=2,
+    output_filename="my_mix.mp3"
+)
+
+# Z playlisty YouTube
+output = app.create_mix_from_playlist(
+    playlist_url="https://www.youtube.com/playlist?list=...",
+    max_songs=5,
+    segments_per_track=2,
+    output_filename="playlist_mix.mp3"
+)
+
+# Z URL-i YouTube
+output = app.create_mix_from_youtube_urls(
+    urls=["https://www.youtube.com/watch?v=...", ...],
+    segments_per_track=2,
+    output_filename="youtube_mix.mp3"
+)</div>
+
+            <h3>Glowne klasy</h3>
+            <table>
+                <tr>
+                    <th>Klasa</th>
+                    <th>Przeznaczenie</th>
+                </tr>
+                <tr>
+                    <td>ShorterMusicApp</td>
+                    <td>Glowny punkt wejscia aplikacji</td>
+                </tr>
+                <tr>
+                    <td>SegmentFinder</td>
+                    <td>Wykrywanie interesujacych segmentow</td>
+                </tr>
+                <tr>
+                    <td>EnergyDetector</td>
+                    <td>Analiza energii RMS, strumienia spektralnego</td>
+                </tr>
+                <tr>
+                    <td>BPMDetector</td>
+                    <td>Wykrywanie tempa i beatow</td>
+                </tr>
+                <tr>
+                    <td>KeyDetector</td>
+                    <td>Wykrywanie tonacji i trybu</td>
+                </tr>
+                <tr>
+                    <td>TransitionManager</td>
+                    <td>Zarzadzanie kolejnoscia i przejsciami</td>
+                </tr>
+                <tr>
+                    <td>CrossfadeEngine</td>
+                    <td>Silnik crossfade</td>
+                </tr>
+                <tr>
+                    <td>PlaylistDownloader</td>
+                    <td>Pobieranie z YouTube</td>
+                </tr>
+                <tr>
+                    <td>AudioLoader</td>
+                    <td>Wczytywanie i zapisywanie audio</td>
+                </tr>
+            </table>
+
+            <h3>Metody ShorterMusicApp</h3>
+            <div class="code-block"># Analiza pojedynczego utworu
+result = app.process_single_track(
+    file_path="song.mp3",
+    num_segments=3
+)
+# Zwraca: segmenty z czasem, tonacja, BPM, wynik interesujacosci
+
+# Przetwarzanie wsadowe
+all_segments = app.process_multiple_tracks(
+    file_paths=[...],
+    num_segments=2
+)
+
+# Informacje o miksie
+info = app.get_mix_info(mix_segments)
+# Zwraca: czas trwania, srednie BPM, tonacje, przejscia</div>
+        </section>
+
+        <section id="formaty" class="section">
+            <h2>Obslugiwane formaty audio</h2>
+
+            <h3>Formaty wejsciowe</h3>
+            <table>
+                <tr>
+                    <th>Format</th>
+                    <th>Rozszerzenie</th>
+                    <th>Uwagi</th>
+                </tr>
+                <tr>
+                    <td>MPEG Audio Layer 3</td>
+                    <td>.mp3</td>
+                    <td>Pelne wsparcie</td>
+                </tr>
+                <tr>
+                    <td>Waveform Audio</td>
+                    <td>.wav</td>
+                    <td>Pelne wsparcie</td>
+                </tr>
+                <tr>
+                    <td>Free Lossless Audio Codec</td>
+                    <td>.flac</td>
+                    <td>Pelne wsparcie</td>
+                </tr>
+                <tr>
+                    <td>Ogg Vorbis</td>
+                    <td>.ogg</td>
+                    <td>Pelne wsparcie</td>
+                </tr>
+                <tr>
+                    <td>MPEG-4 Audio</td>
+                    <td>.m4a</td>
+                    <td>Wymaga FFmpeg</td>
+                </tr>
+                <tr>
+                    <td>Windows Media Audio</td>
+                    <td>.wma</td>
+                    <td>Wymaga FFmpeg</td>
+                </tr>
+            </table>
+
+            <h3>Formaty wyjsciowe</h3>
+            <ul>
+                <li><strong>MP3</strong> - 192 kbps (domyslny)</li>
+                <li><strong>WAV</strong> - bezstratny</li>
+                <li><strong>FLAC</strong> - bezstratna kompresja</li>
+                <li><strong>OGG</strong> - Ogg Vorbis</li>
+            </ul>
+        </section>
+
+        <section id="rozwiazywanie" class="section">
+            <h2>Rozwiazywanie problemow</h2>
+
+            <h3>FFmpeg nie znaleziony</h3>
+            <div class="warning-box">
+                <strong>Problem:</strong> Blad eksportu do MP3 - FFmpeg nie jest zainstalowany.<br>
+                <strong>Rozwiazanie:</strong> Zainstaluj FFmpeg systemowo lub umiec pliki binarne w
+                <span class="code-inline">bin/ffmpeg/</span>
+            </div>
+
+            <h3>Blad pobierania z YouTube</h3>
+            <div class="warning-box">
+                <strong>Problem:</strong> yt-dlp nie moze pobrac video.<br>
+                <strong>Rozwiazanie:</strong> Zaktualizuj yt-dlp: <span class="code-inline">pip install -U yt-dlp</span>
+            </div>
+
+            <h3>Brak pamieci</h3>
+            <div class="warning-box">
+                <strong>Problem:</strong> Aplikacja zuzuwa za duzo RAM.<br>
+                <strong>Rozwiazanie:</strong> Zmniejsz liczbe przetwarzanych plikow lub uzyj krotszych utworow.
+            </div>
+
+            <h3>Brak plikow w folderze downloads</h3>
+            <div class="warning-box">
+                <strong>Problem:</strong> Aplikacja nie widzi plikow audio.<br>
+                <strong>Rozwiazanie:</strong> Upewnij sie, ze pliki sa w formacie MP3, WAV lub FLAC
+                i znajduja sie w <span class="code-inline">data/downloads/</span>
+            </div>
+
+            <h3>Struktura folderow</h3>
+            <div class="code-block">data/
+  downloads/    &lt;-- Tutaj umieszczaj pliki zrodlowe
+  output/       &lt;-- Tutaj znajdziesz gotowe miksy
+  processed/    &lt;-- Cache analizy (automatyczny)</div>
+        </section>
+
+        <footer class="footer">
+            <p>ShorterMusic - Automatyczny kreator miksow muzycznych</p>
+            <p>Wersja dokumentacji: 1.0</p>
+        </footer>
+    </div>
+</body>
+</html>
