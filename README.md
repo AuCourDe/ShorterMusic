@@ -1,6 +1,6 @@
 # ShorterMusic
 
-Automatyczny kreator miksow muzycznych z fragmentow wielu utworow.
+Kreator miksów muzycznych z fragmentów wielu utworów.
 
 ## Szybki start
 
@@ -30,107 +30,105 @@ python interactive.py
 
 ---
 
-## Uklad menu
+## Układ menu
 
 ```
 ============================================================
        ShorterMusic - Interactive Mix Creator
 ============================================================
 
-Wybierz zrodlo utworow (Choose source):
-  [1] Pobierz playliste z YouTube
-  [2] Uzyj plikow z folderu downloads
+Wybierz źródło utworów (Choose source):
+  [1] Pobierz playlistę z YouTube
+  [2] Użyj plików z folderu downloads
 
 -----------------------------------------------------------
-Po wyborze zrodla:
+Po wyborze źródła:
 -----------------------------------------------------------
 
-Konfiguracja segmentow:
-  - Liczba segmentow na utwor: 1-5 (domyslnie: 1)
-  - Minimalna dlugosc segmentu: 3-30s (domyslnie: 7s)
-  - Maksymalna dlugosc segmentu: min-60s (domyslnie: 15s)
-  - Nazwa pliku wyjsciowego (domyslnie: mix.mp3)
+Konfiguracja segmentów:
+  - Liczba segmentów na utwór: 1-5 (domyślnie: 1)
+  - Minimalna długość segmentu: 3-30s (domyślnie: 7s)
+  - Maksymalna długość segmentu: min-60s (domyślnie: 15s)
+  - Nazwa pliku wyjściowego (domyślnie: mix.mp3)
 
 -----------------------------------------------------------
-Po zakonczeniu:
+Po zakończeniu:
 -----------------------------------------------------------
-  - Pytanie: Usunac pobrane pliki? (t/n)
-  - Wyswietlenie sciezki do wygenerowanego miksu
+  - Pytanie: Usunąć pobrane pliki? (t/n)
+  - Wyświetlenie ścieżki do wygenerowanego miksu
 ```
 
 ---
 
-## Dostepne opcje
+## Dostępne opcje
 
 ### Opcja 1: Pobieranie z YouTube
 
-1. Wprowadz URL playlisty YouTube
-2. Podaj liczbe utworow do pobrania (0 = wszystkie)
-3. Poczekaj na zakonczenie pobierania
+1. Wprowadź URL playlisty YouTube
+2. Podaj liczbę utworów do pobrania (0 = wszystkie)
+3. Poczekaj na zakończenie pobierania
 4. Pliki zapisane w `data/downloads/`
 
 ### Opcja 2: Pliki lokalne
 
-1. Umiesc pliki audio (MP3, WAV, FLAC) w `data/downloads/`
-2. Wybierz opcje 2 z menu
-3. Uzyj wszystkich plikow lub wybierz konkretne (numery oddzielone przecinkami)
+1. Umieść pliki audio (MP3, WAV, FLAC) w `data/downloads/`
+2. Wybierz opcję 2 z menu
+3. Użyj wszystkich plików lub wybierz konkretne (numery oddzielone przecinkami)
 
 ---
 
 ## Parametry konfiguracyjne
 
-| Parametr | Zakres | Domyslnie | Opis |
+| Parametr | Zakres | Domyślnie | Opis |
 |----------|--------|-----------|------|
-| Segmenty na utwor | 1-5 | 1 | Ile fragmentow wyciagnac z kazdego utworu |
-| Min. dlugosc | 3-30s | 7s | Minimalna dlugosc segmentu |
-| Max. dlugosc | min-60s | 15s | Maksymalna dlugosc segmentu |
-| Nazwa pliku | dowolna | mix.mp3 | Nazwa pliku wyjsciowego |
+| Segmenty na utwór | 1-5 | 1 | Ile fragmentów wyciągnąć z każdego utworu |
+| Min. długość | 3-30s | 7s | Minimalna długość segmentu |
+| Max. długość | min-60s | 15s | Maksymalna długość segmentu |
+| Nazwa pliku | dowolna | mix.mp3 | Nazwa pliku wyjściowego |
 
 ---
 
-## Struktura folderow
+## Struktura folderów
 
 ```
 ShorterMusic/
 ├── windows.bat          # Launcher Windows
 ├── linux-mac.sh         # Launcher Linux/macOS
-├── instrukcja.html      # Pelna dokumentacja HTML
+├── instrukcja.html      # Pełna dokumentacja HTML
 ├── README.md            # Ten plik
 └── files/
-    ├── interactive.py   # Glowny interfejs
-    ├── run.bat          # Skrypt Windows
-    ├── run.sh           # Skrypt Unix
-    ├── requirements.txt # Zaleznosci Python
+    ├── interactive.py   # Główny interfejs
+    ├── requirements.txt # Zależności Python
     ├── App/             # Kod aplikacji
-    │   ├── core/        # Glowna logika
+    │   ├── core/        # Główna logika
     │   ├── audio_analysis/  # Analiza audio
     │   ├── mixing/      # Miksowanie
     │   ├── youtube/     # Pobieranie YouTube
-    │   └── utils/       # Narzedzia
+    │   └── utils/       # Narzędzia
     └── data/
-        ├── downloads/   # Pliki zrodlowe
+        ├── downloads/   # Pliki źródłowe
         ├── output/      # Gotowe miksy
         └── processed/   # Cache analizy
 ```
 
 ---
 
-## Obslugiwane formaty
+## Obsługiwane formaty
 
-**Wejscie:** MP3, WAV, FLAC, OGG, M4A, WMA
+**Wejście:** MP3, WAV, FLAC, OGG, M4A, WMA
 
-**Wyjscie:** MP3 (192 kbps), WAV, FLAC, OGG
+**Wyjście:** MP3 (192 kbps), WAV, FLAC, OGG
 
 ---
 
-## Uzycie programistyczne
+## Użycie kodu
 
 ```python
 from App.core.app import ShorterMusicApp
 
 app = ShorterMusicApp()
 
-# Z plikow lokalnych
+# Z plików lokalnych
 output = app.create_mix_from_files(
     file_paths=["song1.mp3", "song2.mp3"],
     segments_per_track=2,
@@ -147,16 +145,16 @@ output = app.create_mix_from_playlist(
 
 ---
 
-## Rozwiazywanie problemow
+## Rozwiązywanie problemów
 
-| Problem | Rozwiazanie |
+| Problem | Rozwiązanie |
 |---------|-------------|
-| FFmpeg nie znaleziony | Zainstaluj FFmpeg lub umiesc w `bin/ffmpeg/` |
-| Blad yt-dlp | Zaktualizuj: `pip install -U yt-dlp` |
-| Brak plikow | Sprawdz czy pliki sa w `data/downloads/` |
+| FFmpeg nie znaleziony | Zainstaluj FFmpeg lub umieść w `bin/ffmpeg/` |
+| Błąd yt-dlp | Zaktualizuj: `pip install -U yt-dlp` |
+| Brak plików | Sprawdź czy pliki są w `data/downloads/` |
 
 ---
 
 ## Dokumentacja
 
-Pelna dokumentacja z GUI: [instrukcja.html](instrukcja.html)
+Pełna dokumentacja z GUI: [instrukcja.html](instrukcja.html)
