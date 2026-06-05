@@ -1,0 +1,18 @@
+# Audio processing
+librosa==0.10.1
+soundfile==0.12.1
+numpy==1.26.3
+scipy==1.11.4
+
+# YouTube download
+yt-dlp>=2023.12.30
+
+# Utilities
+tqdm==4.66.1
+
+# External executables required on PATH (not Python packages): ffmpeg, yt-dlp
+#
+# Optional, not used by the App/ code:
+# pyrubberband==0.3.0  # Time stretching - DISABLED: pulls in the old PySoundFile 0.9.0,
+#                      which shadows soundfile 0.12.1 and breaks librosa.
+# madmom==0.16.1       # Beat detection - requires Python <3.10 or >=3.11

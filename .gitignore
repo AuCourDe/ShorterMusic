@@ -1,0 +1,48 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# PyInstaller build output
+build/
+dist/
+
+# Application data (downloads, output, processed)
+data/
+
+# Bundled binaries (provide your own ffmpeg / yt-dlp on PATH)
+bin/
+
+# Audio files
+*.mp3
+*.wav
+*.flac
+*.ogg
+*.m4a
+
+# Claude / AI assistant files
+.claude/
+.claude.json
+.claude.json.backup
+CLAUDE.md
+.cursor/
+.windsurf/
+.aider*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local dev / scratch scripts (kept out of the public repo)
+debug_*.py
+example.py
+check_playlist.py
+verify_app.py
+download_and_mix.py
+sample/
