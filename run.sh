@@ -23,8 +23,8 @@ if [ ! -x "venv/bin/python" ]; then
     "$PY_CREATE" -m venv venv || { echo "[ERROR] Failed to create venv."; exit 1; }
 fi
 
-# Self-healing: if a key dependency (numpy) does not import, (re)install requirements.
-if ! venv/bin/python -c "import numpy" >/dev/null 2>&1; then
+# Self-healing: if a key dependency (numpy, librosa) does not import, (re)install requirements.
+if ! venv/bin/python -c "import numpy, librosa" >/dev/null 2>&1; then
     echo "[INFO] Installing dependencies..."
     venv/bin/python -m pip install -r requirements.txt || { echo "[ERROR] Failed to install dependencies."; exit 1; }
     echo "[OK] Environment ready."

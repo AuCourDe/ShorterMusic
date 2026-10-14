@@ -9,7 +9,7 @@ class BPMDetector:
 
     def detect_bpm(self, audio: np.ndarray, sr: int) -> float:
         tempo, _ = librosa.beat.beat_track(y=audio, sr=sr, hop_length=self.hop_length)
-        return float(tempo)
+        return float(np.atleast_1d(tempo)[0])
 
     def detect_bpm_with_confidence(self, audio: np.ndarray, sr: int) -> Tuple[float, float]:
         tempo, beats = librosa.beat.beat_track(y=audio, sr=sr, hop_length=self.hop_length)
@@ -20,7 +20,7 @@ class BPMDetector:
         beat_frames = librosa.util.match_events(beats, pulse)
         confidence = np.mean(pulse[beat_frames])
         
-        return float(tempo), float(confidence)
+        return float(np.atleast_1d(tempo)[0]), float(confidence)
 
     def get_beat_frames(self, audio: np.ndarray, sr: int, bpm: Optional[float] = None) -> np.ndarray:
         if bpm is None:

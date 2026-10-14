@@ -126,6 +126,12 @@ def select_files(app: ShorterMusicApp) -> List[str]:
     playlist_url = get_playlist_url()
     downloader = app.playlist_downloader
 
+    print("\n  Updating yt-dlp...")
+    if downloader.update_yt_dlp():
+        print("  ✓ yt-dlp is up to date")
+    else:
+        print("  ! Could not update yt-dlp, using the installed version")
+
     print("\n  Checking playlist...")
     info = downloader.get_playlist_info(playlist_url)
     num_videos = info.get('num_videos', 0)

@@ -30,8 +30,8 @@ if not exist "venv\Scripts\python.exe" (
     )
 )
 
-rem Self-healing: if a key dependency (numpy) does not import, (re)install requirements.
-"venv\Scripts\python.exe" -c "import numpy" >nul 2>&1
+rem Self-healing: if a key dependency (numpy, librosa) does not import, (re)install requirements.
+"venv\Scripts\python.exe" -c "import numpy, librosa" >nul 2>&1
 if errorlevel 1 (
     echo [INFO] Installing dependencies...
     "venv\Scripts\python.exe" -m pip install -r requirements.txt

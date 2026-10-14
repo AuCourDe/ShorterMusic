@@ -11,18 +11,23 @@ class PlaylistDownloader:
         self.output_dir = output_dir or Path("data/downloads")
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
+        # yt-dlp looks up the deno JS runtime in PATH; the pip-installed one sits next to the interpreter
+        os.environ["PATH"] = str(Path(sys.executable).parent) + os.pathsep + os.environ.get("PATH", "")
+
         self.yt_dlp_path = self._find_yt_dlp()
 
     def _find_yt_dlp(self) -> str:
+        # venv copy first: it is the one update_yt_dlp() keeps current
+        if sys.prefix != sys.base_prefix:
+            for venv_yt_dlp in (Path(sys.prefix) / "bin" / "yt-dlp",
+                                Path(sys.prefix) / "Scripts" / "yt-dlp.exe"):
+                if venv_yt_dlp.exists():
+                    return str(venv_yt_dlp)
+
         base_dir = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parents[3]))
         bundled_yt_dlp = base_dir / "bin" / "yt-dlp" / "yt-dlp.exe"
         if bundled_yt_dlp.exists():
             return str(bundled_yt_dlp)
-
-        if sys.prefix != sys.base_prefix:
-            venv_yt_dlp = Path(sys.prefix) / "bin" / "yt-dlp"
-            if venv_yt_dlp.exists():
-                return str(venv_yt_dlp)
 
         for path in os.environ.get("PATH", "").split(os.pathsep):
             yt_dlp = Path(path) / "yt-dlp"
@@ -30,6 +35,23 @@ class PlaylistDownloader:
                 return str(yt_dlp)
 
         return "yt-dlp"
+
+    def update_yt_dlp(self) -> bool:
+        # YouTube changes often and old yt-dlp versions stop working, so update before every download
+        if sys.prefix != sys.base_prefix:
+            cmd = [sys.executable, "-m", "pip", "install", "-U", "-q",
+                   "--disable-pip-version-check", "--timeout", "10", "--retries", "1",
+                   "yt-dlp[default,deno]"]
+        else:
+            cmd = [self.yt_dlp_path, "-U"]
+
+        try:
+            subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=180)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError):
+            return False
+
+        self.yt_dlp_path = self._find_yt_dlp()
+        return True
 
     def download_audio(self, url: str, output_filename: Optional[str] = None) -> str:
         if output_filename:

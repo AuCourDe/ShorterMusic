@@ -17,7 +17,9 @@ also download the tracks straight from a YouTube playlist before mixing.
 ## Requirements
 
 - Python 3.10–3.12 (3.11 recommended)
-- [`ffmpeg`](https://ffmpeg.org/) and [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) available on your `PATH`
+- [`ffmpeg`](https://ffmpeg.org/) available on your `PATH`
+- [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) and its JavaScript runtime `deno` are installed from
+  `requirements.txt` and updated automatically before every YouTube download
 
 ## Quick start
 

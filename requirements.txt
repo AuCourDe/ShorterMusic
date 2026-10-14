@@ -3,14 +3,17 @@ librosa==0.10.1
 soundfile==0.12.1
 numpy==1.26.3
 scipy==1.11.4
+# librosa 0.10.1 imports pkg_resources, which Python 3.12+ venvs no longer ship
+setuptools<81
 
 # YouTube download
-yt-dlp>=2023.12.30
+# deno = JavaScript runtime YouTube now requires; both are updated automatically before every download
+yt-dlp[default,deno]
 
 # Utilities
 tqdm==4.66.1
 
-# External executables required on PATH (not Python packages): ffmpeg, yt-dlp
+# External executable required on PATH (not a Python package): ffmpeg
 #
 # Optional, not used by the App/ code:
 # pyrubberband==0.3.0  # Time stretching - DISABLED: pulls in the old PySoundFile 0.9.0,
